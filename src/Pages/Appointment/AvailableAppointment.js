@@ -9,7 +9,7 @@ const AvailableAppointment = ({date}) => {
     //booking modal open/close ar jnno
     const [treatment,setTreatment]=useState()
     useEffect(()=>{
-        fetch('services.json')
+        fetch('http://localhost:5000/service')
         .then(res=>res.json())
         .then(data=>{
             setService(data)
