@@ -1,7 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import auth from '../../firebase.init'
+import Loading from "../Loading/Loading"
 
 const Navbar = () => {
+    const [user,loading,error]=useAuthState(auth)
+
+    if(loading){
+        return <Loading></Loading>
+    }
+
+    //handle logout
+    const signOutHandle=()=>{
+        signOut(auth);
+    }
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/appointment">Appointment</Link></li>
@@ -21,11 +35,21 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Doctors Portal</a>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                    {menuItems}
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/appointment">Appointment</Link></li>
+                    <li><Link to="/review">Review</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    {
+                        user? <button onClick={signOutHandle} style={{color:"red"}}>Sign-out</button>
+                        :
+                        <li><Link to="/login">Login</Link></li>
+                    }
+                    
                 </ul>
             </div>
         </div>

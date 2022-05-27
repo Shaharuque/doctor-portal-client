@@ -25,6 +25,10 @@ const Login = () => {
   //reset password ar jnno useSendPasswordResetEmail react-firebase-hook use kora holo
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
+  //user login kora na tahley to login page a niye jabey plus user login korar por shei user k jei page thekey login ar jnno ashsey shei page a niye jabey
+  const location=useLocation()
+  let from = location.state?.from?.pathname || "/";  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     //input field thekey data collect korar 2nd way (input field thekey data collect kora 1st way holo useState use kora)
@@ -37,8 +41,10 @@ const Login = () => {
   if (loading || sending) {
     return <Loading></Loading>;
   }
+ 
+  //login korar por user k jei page thekey login ar jnno ashsey shei page a niye jabey
   if(user){
-      navigate('/')
+    navigate(from, { replace: true });
   }
 
   //Error massege show
