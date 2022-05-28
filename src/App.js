@@ -7,6 +7,8 @@ import Appointment from './Pages/Appointment/Appointment';
 import Login from './Pages/Authentication/Login/Login';
 import Register from './Pages/Authentication/Registration/Register';
 import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
+import { ToastContainer,  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
+      {/* react toast show korar jnno */}
+      <ToastContainer />
     </div>
   );
 }

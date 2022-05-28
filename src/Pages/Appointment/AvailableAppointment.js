@@ -9,13 +9,13 @@ const AvailableAppointment = ({date}) => {
     //booking modal open/close ar jnno
     const [treatment,setTreatment]=useState()
     useEffect(()=>{
-        fetch('http://localhost:5000/service')
+        fetch('http://localhost:5500/service')
         .then(res=>res.json())
         .then(data=>{
             setService(data)
         })
     },[])
-    console.log(services)
+    //console.log(services)
     return (
         <div>
             <p className='text-xl text-secondary text-center my-12'>Available Appointments on :{date ?format(date,'PP'):'Please pick one'}</p>

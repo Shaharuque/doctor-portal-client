@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import auth from '../../firebase.init'
@@ -7,6 +7,8 @@ import Loading from "../Loading/Loading"
 
 const Navbar = () => {
     const [user,loading,error]=useAuthState(auth)
+    const navigate=useNavigate()
+    console.log(user)
 
     if(loading){
         return <Loading></Loading>
@@ -15,6 +17,7 @@ const Navbar = () => {
     //handle logout
     const signOutHandle=()=>{
         signOut(auth);
+        navigate('/login')
     }
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
@@ -45,7 +48,7 @@ const Navbar = () => {
                     <li><Link to="/contact">Contact</Link></li>
                     <li><Link to="/about">About</Link></li>
                     {
-                        user? <button onClick={signOutHandle} style={{color:"red"}}>Sign-out</button>
+                        user? <button onClick={signOutHandle} style={{color:"red"}}>Sign-out<sup>{user?.displayName}</sup></button>
                         :
                         <li><Link to="/login">Login</Link></li>
                     }

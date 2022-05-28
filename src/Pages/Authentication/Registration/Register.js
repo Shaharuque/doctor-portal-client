@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init'
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from '../../Loading/Loading';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     const [agree,setAgree]=useState(false)
     const navigate=useNavigate()
+    //for updating user profile
+    const [displayName, setDisplayName] = useState('');
+    const [photoURL, setPhotoURL] = useState('');
 
     const [
         createUserWithEmailAndPassword,
@@ -17,7 +22,8 @@ const Register = () => {
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
-   
+      //updating urer profile
+      const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const submitHandler=async(e)=>{
         e.preventDefault()
@@ -27,13 +33,21 @@ const Register = () => {
         const userAdress=e.target.adress.value
 
         await createUserWithEmailAndPassword(userEmail, userPassword)
+        await updateProfile({ displayName:userName });  //user reg korar por e tar display name property update hoa jabey
     }  
+    //console.log(user)
 
     if(user){
         navigate('/')
     }
 
-    if(loading){
+    let registerError;
+    if (error || updateError) {
+        registerError = <p className='text-red-500 font-bold'><small>{error?.message} || {updateError?.message}</small></p>
+        
+    }
+
+    if(loading || updating){
         return <Loading></Loading>
     }
     return (
@@ -73,23 +87,18 @@ const Register = () => {
                     class="input input-bordered input-info w-full max-w-xs"
                     required
                     />
-                    
-                    <div>
-                    <input onClick={()=>setAgree(!agree)} style={{marginRight:'3px',marginBottom:'20px'}} type="checkbox" name="terms" id="" />
-                    {/*css styling a conditional rendering ar use */}
-                    <label style={agree ?{fontWeight:'bold',color:'teal'} : {fontWeight:'bold',color:'lightblue'}} htmlFor="term&condition">Terms&conditions</label>
-                    </div>
-                    
-                    <Button variant="primary" type="submit" disabled={!agree}>
+                    <Button variant="primary" type="submit">
                         Register
                     </Button>
-                    <p style={{color:'red'}}>{error?.message}</p>
+                    {/* error show ar jnno toast use korsi aikhaney */}
+                    {registerError}
                 </Form>
                 <div className='grid grid-cols-1 gap-6 justify-items-center'>
                     <p style={{ marginTop: '10px' }}>Already registed? <Link to='/login' style={{ color: 'teal', fontWeight: '600' }}>login</Link></p>
                 </div>
             </div>
             {/* <SocialLogin></SocialLogin> */}
+            
         </div>
     );
 };
