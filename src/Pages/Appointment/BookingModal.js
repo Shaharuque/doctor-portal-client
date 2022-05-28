@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { toast } from 'react-toastify';
 
-const BookingModal = ({ treatment, setTreatment, date }) => {
+const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
   const { _id, name, slots } = treatment;
   //logged in user ar information pabo 'user' object ar vitor
   const [user, loading, error] = useAuthState(auth);
@@ -49,6 +49,8 @@ const BookingModal = ({ treatment, setTreatment, date }) => {
     })
     .catch(err=>console.log(err))
 
+    //refetching the "http://localhost:5500/available?date=${formattedDate}" api 
+    refetch()
     setTreatment(null); //kaj shes a modal close kora hocchey
   };
   return (
