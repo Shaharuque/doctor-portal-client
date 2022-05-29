@@ -15,6 +15,8 @@ import Loading from "../../Loading/Loading";
 import auth from "../../../firebase.init";
 //for react hook form
 import { useForm } from "react-hook-form";
+import SocialLogin from "../SocialLogin/SocialLogin";
+import useToken from "../../../CustomHook/useToken";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,6 +35,8 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   //reset password ar jnno useSendPasswordResetEmail react-firebase-hook use kora holo
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  //useToken hook use kora holo//
+  const [token, setToken] = useToken(user);
   
 
   //user login kora na tahley to login page a niye jabey plus user login korar por shei user k jei page thekey login ar jnno ashsey shei page a niye jabey
@@ -60,8 +64,12 @@ const Login = () => {
   }
 
   //login korar por user k jei page thekey login ar jnno ashsey shei page a niye jabey
-  if (user) {
-    navigate(from, { replace: true });
+  // if (user) {
+  //   navigate(from, { replace: true });
+  // }
+   //server side thekey client side a accessToken provide korlei navigate kora hobey//
+   if(token){
+    navigate(from, { replace: true })
   }
 
   //console.log(user);
@@ -198,7 +206,7 @@ const Login = () => {
           </span>
         </p>
 
-        {/* <SocialLogin></SocialLogin> */}
+        <SocialLogin></SocialLogin>
       </div>
       <ToastContainer />
     </div>

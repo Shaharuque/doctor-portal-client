@@ -8,7 +8,7 @@ import Loading from "../Loading/Loading"
 const Navbar = () => {
     const [user,loading,error]=useAuthState(auth)
     const navigate=useNavigate()
-    console.log(user)
+    //console.log(user)
 
     if(loading){
         return <Loading></Loading>
@@ -17,6 +17,7 @@ const Navbar = () => {
     //handle logout
     const signOutHandle=()=>{
         signOut(auth);
+        localStorage.removeItem('token')
         navigate('/login')
     }
     const menuItems = <>
@@ -29,13 +30,27 @@ const Navbar = () => {
     </>
     return (
         <div className="navbar bg-base-100">
+            {/* mobile device a dekhabey */}
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        {menuItems}
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/appointment">Appointment</Link></li>
+                        <li><Link to="/review">Review</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        {/* user logged in kora thaklei dashboard ta dekhabo */}
+                        {
+                            user&& <li><Link to="/dashboard">Dashboard</Link></li>
+                        }
+                        {
+                            user? <button onClick={signOutHandle} style={{color:"red"}}>Sign-out<sup>{user?.displayName}</sup></button>
+                            :
+                            <li><Link to="/login">Login</Link></li>
+                        }
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
@@ -47,6 +62,10 @@ const Navbar = () => {
                     <li><Link to="/review">Review</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    {/* user logged in kora thaklei dashboard ta dekhabo */}
+                    {
+                        user&& <li><Link to="/dashboard">Dashboard</Link></li>
+                    }
                     {
                         user? <button onClick={signOutHandle} style={{color:"red"}}>Sign-out<sup>{user?.displayName}</sup></button>
                         :
@@ -55,6 +74,8 @@ const Navbar = () => {
                     
                 </ul>
             </div>
+            {/* mobile device a side bar open ar jnno ekta icon dekhabo */}
+          
         </div>
     );
 };

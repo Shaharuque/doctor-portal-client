@@ -9,6 +9,10 @@ import Register from './Pages/Authentication/Registration/Register';
 import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
 import { ToastContainer,  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyAppointments from './Pages/Dashboard/MyAppointments';
+import MyReview from './Pages/Dashboard/MyReview';
+import MyHistory from './Pages/Dashboard/MyHistory';
 
 function App() {
   return (
@@ -23,6 +27,19 @@ function App() {
             <Appointment/>
           </RequireAuth>
         }>
+        </Route>
+
+        {/* for nested route purpose ek route ar peter vitor arek route and Dashbboard is private as well*/}
+        <Route path="/dashboard" element={
+          <RequireAuth>
+            <Dashboard/>
+          </RequireAuth>
+        }>
+          {/* /dashboard route ar vitor geley MyAppointments page ta render hoye thakbey tai path ar jaigae shudu 'index' dewa hoisey */}
+          <Route index element={<MyAppointments></MyAppointments>}></Route>
+          {/* route path jodi /dashboard/review hoy tahley MyReview page render hobey [path='review' aita hobey don't use path='/review']*/}
+          <Route path='review' element={<MyReview></MyReview>}></Route>
+          <Route path='history' element={<MyHistory></MyHistory>}></Route>
         </Route>
         
         <Route path="/login" element={<Login />} />

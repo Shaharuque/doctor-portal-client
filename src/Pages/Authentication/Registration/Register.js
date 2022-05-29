@@ -6,6 +6,8 @@ import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateP
 import Loading from '../../Loading/Loading';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useToken from '../../../CustomHook/useToken';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 // import SocialLogin from '../SocialLogin/SocialLogin';
 
@@ -25,6 +27,9 @@ const Register = () => {
       //updating urer profile
       const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+      //useToken hook use kora holo//
+      const [token,setToken]=useToken(user)  //parameter hisabey user k pathano hoisey
+
     const submitHandler=async(e)=>{
         e.preventDefault()
         const userName=e.target.name.value
@@ -33,11 +38,12 @@ const Register = () => {
         const userAdress=e.target.adress.value
 
         await createUserWithEmailAndPassword(userEmail, userPassword)
-        await updateProfile({ displayName:userName });  //user reg korar por e tar display name property update hoa jabey
+        await updateProfile({ displayName:userName });  //user reg korar por e tar displayName property userName diye update hoa jabey
     }  
     //console.log(user)
 
-    if(user){
+    //server side thekey client side a accessToken provide korlei navigate kora hobey//
+    if(token){
         navigate('/')
     }
 
@@ -97,7 +103,7 @@ const Register = () => {
                     <p style={{ marginTop: '10px' }}>Already registed? <Link to='/login' style={{ color: 'teal', fontWeight: '600' }}>login</Link></p>
                 </div>
             </div>
-            {/* <SocialLogin></SocialLogin> */}
+            <SocialLogin></SocialLogin>
             
         </div>
     );
