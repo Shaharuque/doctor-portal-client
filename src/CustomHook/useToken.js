@@ -7,7 +7,7 @@ const useToken=(user)=>{
         const currentUser={email:email}  //client side thekey ai data jabey
 
         if(email){
-            fetch(`http://localhost:5500/user/${email}`,{
+            fetch(`https://whispering-falls-11392.herokuapp.com/user/${email}`,{
                 method:'PUT',
                 headers:{
                     'Content-Type':'application/json'

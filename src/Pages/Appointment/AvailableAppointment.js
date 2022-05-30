@@ -18,7 +18,7 @@ const AvailableAppointment = ({ date }) => {
     //refetch use kortese cuz state change ar sathey sathey jeno abr api ta call korey ager assignment a increse/decrease ar kaj korsilam same technique use korei
     //data: services=>data is named as services and inside services all the fetched data will be stored ,['availble',formattedDate]=>formattedDate is the dependency here
     const { isLoading, error, data: services,refetch } = useQuery(['availble',formattedDate], () =>
-        fetch(`http://localhost:5500/available?date=${formattedDate}`).then(res =>
+        fetch(`https://whispering-falls-11392.herokuapp.com/available?date=${formattedDate}`).then(res =>
             res.json()
         )
     )
@@ -26,7 +26,7 @@ const AvailableAppointment = ({ date }) => {
         return <Loading></Loading>
     }
     // useEffect(() => {
-    //     fetch(`http://localhost:5500/available?date=${formattedDate}`)
+    //     fetch(`https://whispering-falls-11392.herokuapp.com/available?date=${formattedDate}`)
     //         .then(res => res.json())
     //         .then(data => setService(data));
     // }, [formattedDate])

@@ -29,7 +29,7 @@ const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
       patient_phone: phone,
     };
     //calling POST api to post data to server
-    fetch("http://localhost:5500/booking", {
+    fetch("https://whispering-falls-11392.herokuapp.com/booking", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -49,7 +49,7 @@ const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
     })
     .catch(err=>console.log(err))
 
-    //refetching the "http://localhost:5500/available?date=${formattedDate}" api 
+    //refetching the "https://whispering-falls-11392.herokuapp.com/available?date=${formattedDate}" api 
     refetch()
     setTreatment(null); //kaj shes a modal close kora hocchey
   };

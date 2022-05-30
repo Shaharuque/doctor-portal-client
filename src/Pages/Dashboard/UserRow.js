@@ -5,7 +5,7 @@ const UserRow = ({ user,index,refetch }) => {
     //email =>userCollection a jotogula user asey tader email bujhano hoisey one by one arki,Remember ai email ta kinto jei user logged in korsey site a tar na
     const {email,role}=user
     const makeAdmin=()=>{
-        fetch(`http://localhost:5500/user/makeAdmin/${email}`,{
+        fetch(`https://whispering-falls-11392.herokuapp.com/user/makeAdmin/${email}`,{
             method:'PUT',
             headers:{
                 authorization:`bearer ${localStorage.getItem('token')}`

@@ -13,7 +13,7 @@ const MyAppointments = () => {
   useEffect(() => {
     // user logged in thakle fetching ar kaj hobey
     if (user) {
-      fetch(`http://localhost:5500/booking?patient_email=${user.email}`,{ //email ar through tey user find korbey db tey and tar corresponding booking info client a response hisabey send korbey
+      fetch(`https://whispering-falls-11392.herokuapp.com/booking?patient_email=${user.email}`,{ //email ar through tey user find korbey db tey and tar corresponding booking info client a response hisabey send korbey
         method: "GET",
         headers: {
           'authorization': `Bearer ${localStorage.getItem('token')}` //token ta server side a pathassi for verifying weather je get req kortesey se valid user naki outside thekey get req kortesey sheijnno. Remember authorizarion headers add korey dewar jnno akhn ar bairey thekey get req korle kono token server pabey na so ai condition use korey req vaalid naki na seita verify kora jay server a

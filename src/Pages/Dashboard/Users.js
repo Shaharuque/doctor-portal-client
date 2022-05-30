@@ -5,7 +5,7 @@ import UserRow from './UserRow';
 
 const Users = () => {
     const { isLoading, error, data: all_user,refetch } = useQuery('availble', () =>
-        fetch('http://localhost:5500/users',{
+        fetch('https://whispering-falls-11392.herokuapp.com/users',{
             method:'GET',
             headers:{
                 authorization:`bearer ${localStorage.getItem('token')}`
@@ -18,7 +18,7 @@ const Users = () => {
         return <Loading></Loading>
     }
     // useEffect(()=>{
-    //     fetch('http://localhost:5500/users')
+    //     fetch('https://whispering-falls-11392.herokuapp.com/users')
     //     .then(res=>res.json())
     //     .then(data=>console.log(data))
     // },[])
