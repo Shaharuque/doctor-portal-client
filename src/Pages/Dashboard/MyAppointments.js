@@ -1,20 +1,36 @@
 //showing all the appointments of the logged in user
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [user, loading, error] = useAuthState(auth);
+  const navigate=useNavigate()
 
   useEffect(() => {
     // user logged in thakle fetching ar kaj hobey
     if (user) {
-      fetch(`http://localhost:5500/booking?patient_email=${user.email}`) //email ar through tey user find korbey db tey and tar corresponding booking info client a response hisabey send korbey
-        .then((res) => res.json())
+      fetch(`http://localhost:5500/booking?patient_email=${user.email}`,{ //email ar through tey user find korbey db tey and tar corresponding booking info client a response hisabey send korbey
+        method: "GET",
+        headers: {
+          'authorization': `Bearer ${localStorage.getItem('token')}` //token ta server side a pathassi for verifying weather je get req kortesey se valid user naki outside thekey get req kortesey sheijnno. Remember authorizarion headers add korey dewar jnno akhn ar bairey thekey get req korle kono token server pabey na so ai condition use korey req vaalid naki na seita verify kora jay server a
+        }
+      }) 
+        .then((res) => {
+          if(res.status===401 || res.status===403){
+            signOut(auth);
+            localStorage.removeItem('token') //logout ar sathey sathey access token removed
+            navigate('/login')
+          }
+          return res.json()
+        })
         .then((data) => setAppointments(data));
     }
-  }, []);
+  }, [user]);
+
   console.log(appointments);
 
   return (

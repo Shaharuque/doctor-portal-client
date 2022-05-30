@@ -1,7 +1,13 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../../CustomHook/useAdmin";
+import auth from "../../firebase.init";
 
 const Dashboard = () => {
+  const [user]=useAuthState(auth)  //je  loggedin user ar info 'user' a stored asey
+  //user admin holey takey onno kicho feature dekhabo dashboard a
+  const [admin]=useAdmin(user)
   return (
     <div>
       <div className="drawer drawer-mobile">
@@ -37,6 +43,13 @@ const Dashboard = () => {
             <li>
               <Link style={{color:'white',fontWeight:'bold'}}  to='/dashboard/history'>My History</Link>
             </li>
+            {/*Admin shudu ai route dekhtey pabey */}
+            {
+              admin && 
+            <li>
+              <Link style={{color:'white',fontWeight:'bold'}}  to='/dashboard/users'>All Users</Link>
+            </li>
+            }
           </ul>
         </div>
       </div>
