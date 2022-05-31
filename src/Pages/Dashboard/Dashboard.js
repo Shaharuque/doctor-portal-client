@@ -46,9 +46,16 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side ">
           <label for="dashboard-sidebar" class="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-60 bg-teal-700 text-base-content ">
+          <ul className="menu p-4 overflow-y-auto w-60 bg-teal-700 text-base-content rounded-sm">
             {/* <!-- Sidebar content here --> */}
-
+            <li>
+                  <Link
+                    style={{ color: "white", fontWeight: "bold" }}
+                    to="/dashboard"
+                  >
+                    MyProfile
+                  </Link>
+            </li>
             {/*Admin shudu ai route dekhtey pabey */}
             {admin ? (
               <li>
@@ -61,12 +68,12 @@ const Dashboard = () => {
               </li>
             ) : (
               <div>
-                <li>
+                 <li>
                   <Link
                     style={{ color: "white", fontWeight: "bold" }}
-                    to="/dashboard"
+                    to="/dashboard/myappointments"
                   >
-                    Appointments
+                    MyAppointments
                   </Link>
                 </li>
                 <li>

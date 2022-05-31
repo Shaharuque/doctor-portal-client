@@ -79,7 +79,7 @@ const MyAppointments = () => {
         .then((res) => {
           if (res.status === 200) {
             toast.success("Appointment deleted successfully");
-            navigate("/dashboard");
+            navigate("/dashboard/myappointments");
           }
           return res.json();
         })

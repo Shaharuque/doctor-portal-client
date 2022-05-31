@@ -15,6 +15,8 @@ import MyReview from './Pages/Dashboard/MyReview';
 import MyHistory from './Pages/Dashboard/MyHistory';
 import Users from './Pages/Dashboard/Users';
 import NoPageFound from './NoPage/NoPageFound';
+import RequireAdmin from './Pages/Authentication/RequireAuth/RequireAdmin';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -37,12 +39,13 @@ function App() {
             <Dashboard/>
           </RequireAuth>
         }>
-          {/* /dashboard route ar vitor geley MyAppointments page ta render hoye thakbey tai path ar jaigae shudu 'index' dewa hoisey */}
-          <Route index element={<MyAppointments></MyAppointments>}></Route>
+          {/* /dashboard route ar vitor geley MyProfile page ta render hoye thakbey tai path ar jaigae shudu 'index' dewa hoisey */}
+          <Route index element={<MyProfile></MyProfile>}/>
+          <Route path='myappointments' element={<MyAppointments></MyAppointments>}></Route>
           {/* route path jodi /dashboard/review hoy tahley MyReview page render hobey [path='review' aita hobey don't use path='/review']*/}
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='history' element={<MyHistory></MyHistory>}></Route>
-          <Route path='users' element={<Users></Users>}></Route>
+          <Route path='users' element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
         </Route>
         
         <Route path="/login" element={<Login />} />
