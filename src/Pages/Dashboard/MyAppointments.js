@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Loading/Loading";
 
+
+
 const MyAppointments = () => {
   // const [appointments, setAppointments] = useState([]);
   const [user, loading, Autherror] = useAuthState(auth);
@@ -35,7 +37,7 @@ const MyAppointments = () => {
     })
   );
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
   // useEffect(() => {

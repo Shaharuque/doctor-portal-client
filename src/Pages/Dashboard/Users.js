@@ -25,7 +25,7 @@ const Users = () => {
     // console.log(users)
     return (
         <div>
-            <h1>Users:{all_user?.length}</h1>
+            <h1 className='font-sans font-bold'>(Users:{all_user?.length})</h1>
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -40,8 +40,8 @@ const Users = () => {
                     <tbody> 
                         {/* dynamically each user ar jnno UserRow component render hobey*/}
                         {
-                            all_user?.map((user,index) => <UserRow
-                                key={user._id}
+                            all_user.map((user,index) => <UserRow
+                                key={user?._id}
                                 user={user}
                                 index={index}
                                 refetch={refetch}

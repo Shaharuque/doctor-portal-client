@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import gif1 from '../assets/images/chair.png';
 
 const NoPageFound = () => {
     return (

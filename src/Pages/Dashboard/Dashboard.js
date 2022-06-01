@@ -58,7 +58,8 @@ const Dashboard = () => {
             </li>
             {/*Admin shudu ai route dekhtey pabey */}
             {admin ? (
-              <li>
+              <>
+                <li>
                 <Link
                   style={{ color: "white", fontWeight: "bold" }}
                   to="/dashboard/users"
@@ -66,6 +67,15 @@ const Dashboard = () => {
                   All Users
                 </Link>
               </li>
+              <li>
+                <Link
+                  style={{ color: "white", fontWeight: "bold" }}
+                  to="/dashboard/doctors"
+                >
+                  Doctors
+                </Link>
+              </li>
+              </>
             ) : (
               <div>
                  <li>
