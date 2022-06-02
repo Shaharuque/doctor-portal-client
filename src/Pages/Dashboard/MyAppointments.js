@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Loading/Loading";
-
-
+//sweet alert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const MyAppointments = () => {
   // const [appointments, setAppointments] = useState([]);
@@ -20,7 +22,7 @@ const MyAppointments = () => {
     isLoading,
     error,
     data: appointments,
-    refetch
+    refetch,
   } = useQuery("patient_appointments", () =>
     fetch(`http://localhost:5500/booking/?patient_email=${user.email}`, {
       method: "GET",
@@ -68,27 +70,38 @@ const MyAppointments = () => {
   console.log(appointments);
 
   const deleteAction = (appointmentId) => {
-    if (window.confirm("Are you sure to delete this appointment?")) {
-      fetch(
-        `http://localhost:5500/booking/${appointmentId}?user_email=${user.email}`,
-        {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-        .then((res) => {
-          if (res.status === 200) {
-            toast.success("Appointment deleted successfully");
-            navigate("/dashboard/myappointments");
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#087789",
+      cancelButtonColor: "#890816",
+      confirmButtonText: "Delete it!",
+    }).then((result) => {
+      if(result.isConfirmed){
+
+        fetch(
+          `http://localhost:5500/booking/${appointmentId}?user_email=${user.email}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-          return res.json();
-        })
-        .then((data) => {
-          refetch()
-        });
-    }
+        )
+          .then((res) => {
+            if (res.status === 200) {
+              Swal.fire("Deleted!", "Your appointment has been deleted.", "success");
+              navigate("/dashboard/myappointments");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            refetch();
+          });
+      }
+    });
   };
 
   return (

@@ -16,7 +16,7 @@ const AddDoctor = () => {
   const navigate=useNavigate()
  
   //useQuery from react query use korey service data fetch
-  const { data: services, isLoading,reset } = useQuery("services", () =>
+  const { data: services, isLoading } = useQuery("services", () =>
     fetch("http://localhost:5500/service").then((res) => res.json())
   );
   //console.log(services);
@@ -74,24 +74,22 @@ const AddDoctor = () => {
         .then((data) => {
             if(data?.insertedDoctor?.insertedId){
               toast.success('Successfully Added')  
-              reset()   //reset() paisi react Query ar useQuery hook thekey
             } 
             else{
                 console.log(data)
-                toast('Failed to add')
+                toast.error('Doctor Already Added')
             }
-            
-            
+            document.getElementById('myform').reset();   //reset form input fields   
         })
 
-    ///console.log(data);
+    console.log(data);
   };
 
  
 
   return (
-    <div>
-      <form
+    <div> 
+      <form id="myform"   //for restting input fields of form
         className="flex flex-col items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -162,7 +160,7 @@ const AddDoctor = () => {
           >
             {services.map((service) => {
               return (
-                <option value={service?._id} key={service?._id}>
+                <option value={service?.name} key={service?._id}>
                   {service?.name}
                 </option>
               );
