@@ -1,8 +1,15 @@
-# Getting Started with Create React App
+# Project->Doctor's Portal
+[PROJECT LIVE LINK](https://doctor-s-portal-37d0f.web.app/).
+# Features
+- [x] [Login](#login)
+- [x] [Signup](#signup)
+- [x] [Forgot Password](#forgot-password)
+- [x] [Reset Password](#reset-password)
+- [x] [Admin](#doctor-s-portal)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## Technologies used in this project:
+*React js
+*
 
 In the project directory, you can run:
 
