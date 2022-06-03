@@ -52,18 +52,19 @@ const Dashboard = () => {
           <ul className="menu p-4 overflow-y-auto w-60 bg-teal-700 text-base-content rounded-sm">
             {/* <!-- Sidebar content here --> */}
             <li>
-                  <Link
+                  <Link className='hover:bg-yellow-500 rounded-lg'
                     style={{ color: "white", fontWeight: "bold" }}
                     to="/dashboard"
                   >
                     MyProfile
                   </Link>
+                  
             </li>
             {/*Admin shudu ai route dekhtey pabey */}
             {admin ? (
               <>
                 <li>
-                <Link
+                <Link className='hover:bg-yellow-500 rounded-lg'
                   style={{ color: "white", fontWeight: "bold" }}
                   to="/dashboard/users"
                 >
@@ -71,7 +72,7 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                <Link className='hover:bg-yellow-500 rounded-lg'
                   style={{ color: "white", fontWeight: "bold" }}
                   to="/dashboard/doctors"
                 >
@@ -79,7 +80,7 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                <Link className='hover:bg-yellow-500 rounded-lg'
                   style={{ color: "white", fontWeight: "bold" }}
                   to="/dashboard/managedoctors"
                 >
@@ -90,7 +91,7 @@ const Dashboard = () => {
             ) : (
               <div>
                  <li>
-                  <Link
+                  <Link className='hover:bg-yellow-500 rounded-lg'
                     style={{ color: "white", fontWeight: "bold" }}
                     to="/dashboard/myappointments"
                   >
@@ -98,7 +99,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <Link className='hover:bg-yellow-500 rounded-lg'
                     style={{ color: "white", fontWeight: "bold" }}
                     to="/dashboard/review"
                   >
@@ -106,7 +107,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <Link className='hover:bg-yellow-500 rounded-lg'
                     style={{ color: "white", fontWeight: "bold" }}
                     to="/dashboard/history"
                   >

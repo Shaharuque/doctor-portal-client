@@ -6,17 +6,17 @@ import PrimaryButton from '../Shared/PrimaryButton';
 const MakeAppointment = () => {
     return (
         <section style={{
-            background: `url(${appointment})`
+            background: `url(${appointment})`,
+            borderRadius:'5px'
         }} 
         className='flex justify-center items-center'>
             <div className='flex-1 hidden lg:block'>
                 <img className='mt-[-100px]' src={doctor} alt="" />
             </div>
-            <div className='flex-1'>
-                <h3 className='text-xl text-primary font-bold'>Appointment</h3>
-                <h2 className='text-3xl text-white'>Make an Appointment Today</h2>
-                <p className='text-white'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente earum ab cupiditate autem accusantium expedita sequi, temporibus, aut illo doloribus quaerat explicabo, assumenda consectetur est vel ad sed maiores doloremque consequatur. Amet consequuntur quibusdam autem, quod maxime qui itaque quaerat.</p>
-                <PrimaryButton>Get Started</PrimaryButton>
+            <div className='flex-1 p-2 lg:text-center'>
+                <h2 className='text-3xl text-white mt-2 font-bold'>Make an Appointment Today</h2>
+                <p className='text-yellow-400 font-serif mt-2'>We provide world class treatment to your teeth. Remember "WE ARE CREATED TO CREATE BEAUTIFUL SMILES". So hurry up and book your appointment with us today.</p>
+                <PrimaryButton>Book Now!</PrimaryButton>
             </div>
         </section>
     );

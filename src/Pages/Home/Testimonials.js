@@ -4,6 +4,7 @@ import people1 from '../../assets/images/people1.png'
 import people2 from '../../assets/images/people2.png'
 import people3 from '../../assets/images/people3.png'
 import Review from './Review';
+import { BsFillChatQuoteFill } from 'react-icons/bs';
 const Testimonials = () => {
     const reviews = [
         {
@@ -33,7 +34,7 @@ const Testimonials = () => {
             <div className='flex justify-between'>
                 <div>
                     <h4 className="text-xl text-primary font-bold">Testimonials</h4>
-                    <h2 className='text-3xl'>What our Patients say</h2>
+                    <h2 className='lg:text-3xl text-yellow-400 flex items-center'>What our Patients say<BsFillChatQuoteFill/></h2>
                 </div>
                 <div>
                     <img src={quote} className="w-24 lg:w-48" alt="" />
