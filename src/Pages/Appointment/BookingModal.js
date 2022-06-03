@@ -5,7 +5,7 @@ import auth from "../../firebase.init";
 import { toast } from 'react-toastify';
 
 const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots ,price} = treatment;
   //logged in user ar information pabo 'user' object ar vitor
   const [user, loading, error] = useAuthState(auth);
 
@@ -27,6 +27,7 @@ const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
       patient_name: userName,
       patient_email: userEmail,
       patient_phone: phone,
+      price:price,
     };
     //calling POST api to post data to server
     fetch("https://whispering-falls-11392.herokuapp.com/booking", {
@@ -115,19 +116,6 @@ const BookingModal = ({ treatment, setTreatment, date,refetch }) => {
             />
           </form>
 
-          <div className="modal-action">
-            <label
-              style={{
-                color: "red",
-                backgroundColor: "teal",
-                border: "1px solid teal",
-              }}
-              for="booking-modal"
-              className="btn"
-            >
-              X
-            </label>
-          </div>
         </div>
       </div>
     </div>

@@ -123,6 +123,7 @@ const MyAppointments = () => {
               <th>Date</th>
               <th>Time</th>
               <th>Treatment</th>
+              <th>Payment</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -136,6 +137,7 @@ const MyAppointments = () => {
                 <td>{appointment.date}</td>
                 <td>{appointment.slot}</td>
                 <td>{appointment.treatment}</td>
+                <td>{appointment.price}</td>
                 <td>
                   <button
                     onClick={() => deleteAction(appointment._id)}
