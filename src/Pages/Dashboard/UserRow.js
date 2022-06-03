@@ -42,7 +42,7 @@ const UserRow = ({ user,index,refetch }) => {
             confirmButtonText: "Delete it!",
           }).then((result) => {
             if(result.isConfirmed){
-                fetch(`http://localhost:5500/user/${userId}`,{
+                fetch(`https://whispering-falls-11392.herokuapp.com/user/${userId}`,{
                     method:'DELETE',
                     headers:{
                         authorization:`bearer ${localStorage.getItem('token')}`

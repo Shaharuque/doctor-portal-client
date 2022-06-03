@@ -16,7 +16,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("all_doctors", () =>
-    fetch("http://localhost:5500/doctor", {         //getting all doctors
+    fetch("https://whispering-falls-11392.herokuapp.com/doctor", {         //getting all doctors
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -38,7 +38,7 @@ const ManageDoctors = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5500/doctor/${id}`, {
+        fetch(`https://whispering-falls-11392.herokuapp.com/doctor/${id}`, {
           method: "DELETE",
           //headers server side a na pathaley kinto unauthorized access diye dibey as middleware hisbey verifyJWT use kora hoisey
           headers: {

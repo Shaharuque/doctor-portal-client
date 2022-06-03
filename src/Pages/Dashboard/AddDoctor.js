@@ -17,7 +17,7 @@ const AddDoctor = () => {
  
   //useQuery from react query use korey service data fetch
   const { data: services, isLoading } = useQuery("services", () =>
-    fetch("http://localhost:5500/service").then((res) => res.json())
+    fetch("https://whispering-falls-11392.herokuapp.com/service").then((res) => res.json())
   );
   //console.log(services);
   if (isLoading) {
@@ -55,7 +55,7 @@ const AddDoctor = () => {
     //   });
 
     //Uploading doctor data to server/DB
-    fetch("http://localhost:5500/doctor", {
+    fetch("https://whispering-falls-11392.herokuapp.com/doctor", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

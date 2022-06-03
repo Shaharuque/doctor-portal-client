@@ -24,7 +24,7 @@ const MyAppointments = () => {
     data: appointments,
     refetch,
   } = useQuery("patient_appointments", () =>
-    fetch(`http://localhost:5500/booking/?patient_email=${user.email}`, {
+    fetch(`https://whispering-falls-11392.herokuapp.com/booking/?patient_email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`, //token ta server side a pathassi for verifying weather je get req kortesey se valid user naki outside thekey get req kortesey sheijnno. Remember authorizarion headers add korey dewar jnno akhn ar bairey thekey get req korle kono token server pabey na so ai condition use korey req vaalid naki na seita verify kora jay server a
@@ -82,7 +82,7 @@ const MyAppointments = () => {
       if(result.isConfirmed){
 
         fetch(
-          `http://localhost:5500/booking/${appointmentId}?user_email=${user.email}`,
+          `https://whispering-falls-11392.herokuapp.com/booking/${appointmentId}?user_email=${user.email}`,
           {
             method: "DELETE",
             headers: {
