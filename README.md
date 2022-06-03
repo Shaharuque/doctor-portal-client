@@ -1,5 +1,5 @@
 # Project->Doctor's Portal
-[PROJECT LIVE LINK](https://doctor-s-portal-37d0f.web.app/).
+[https://doctor-s-portal-37d0f.web.app/](https://doctor-s-portal-37d0f.web.app/).
 # Features
 - [x] [Login](#login)
 - [x] [Signup](#signup)
