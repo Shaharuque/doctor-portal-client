@@ -19,6 +19,7 @@ import RequireAdmin from './Pages/Authentication/RequireAuth/RequireAdmin';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import AddDoctor from './Pages/Dashboard/AddDoctor';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
+import Payment from './Pages/Dashboard/Payment';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           {/* route path jodi /dashboard/review hoy tahley MyReview page render hobey [path='review' aita hobey don't use path='/review']*/}
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='history' element={<MyHistory></MyHistory>}></Route>
+          <Route path='payment/:id' element={<Payment></Payment>}></Route>
           <Route path='users' element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
           <Route path='doctors' element={<RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>}></Route>
           <Route path='managedoctors' element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>

@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Loading/Loading";
@@ -24,12 +24,15 @@ const MyAppointments = () => {
     data: appointments,
     refetch,
   } = useQuery("patient_appointments", () =>
-    fetch(`https://whispering-falls-11392.herokuapp.com/booking/?patient_email=${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`, //token ta server side a pathassi for verifying weather je get req kortesey se valid user naki outside thekey get req kortesey sheijnno. Remember authorizarion headers add korey dewar jnno akhn ar bairey thekey get req korle kono token server pabey na so ai condition use korey req vaalid naki na seita verify kora jay server a
-      },
-    }).then((res) => {
+    fetch(
+      `https://whispering-falls-11392.herokuapp.com/booking/?patient_email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`, //token ta server side a pathassi for verifying weather je get req kortesey se valid user naki outside thekey get req kortesey sheijnno. Remember authorizarion headers add korey dewar jnno akhn ar bairey thekey get req korle kono token server pabey na so ai condition use korey req vaalid naki na seita verify kora jay server a
+        },
+      }
+    ).then((res) => {
       if (res.status === 401 || res.status === 403) {
         signOut(auth);
         localStorage.removeItem("token"); //logout ar sathey sathey access token removed
@@ -79,8 +82,7 @@ const MyAppointments = () => {
       cancelButtonColor: "#890816",
       confirmButtonText: "Delete it!",
     }).then((result) => {
-      if(result.isConfirmed){
-
+      if (result.isConfirmed) {
         fetch(
           `https://whispering-falls-11392.herokuapp.com/booking/${appointmentId}?user_email=${user.email}`,
           {
@@ -92,7 +94,11 @@ const MyAppointments = () => {
         )
           .then((res) => {
             if (res.status === 200) {
-              Swal.fire("Deleted!", "Your appointment has been deleted.", "success");
+              Swal.fire(
+                "Deleted!",
+                "Your appointment has been deleted.",
+                "success"
+              );
               navigate("/dashboard/myappointments");
             }
             return res.json();
@@ -137,7 +143,18 @@ const MyAppointments = () => {
                 <td>{appointment.date}</td>
                 <td>{appointment.slot}</td>
                 <td>{appointment.treatment}</td>
-                <td>{appointment.price}</td>
+                <td>
+                  {/* payment paid na holey aita show hobey */}
+                  {(appointment.price && !appointment.paid) && (
+                    <Link to={`/dashboard/payment/${appointment._id}`}>
+                      <button className="btn btn-sm btn-success">Pay</button>
+                    </Link>
+                  )}
+                  {/* payment paid holey paid show hobey */}
+                   {(appointment.price && appointment.paid) && (  
+                      <span className="text-success">Paid</span>
+                  )}
+                </td>
                 <td>
                   <button
                     onClick={() => deleteAction(appointment._id)}

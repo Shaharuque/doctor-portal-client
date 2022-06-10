@@ -53,7 +53,7 @@ const AddDoctor = () => {
     //   .catch((error) => {
     //     console.error("Error:", error);
     //   });
-
+    console.log(data)                  //form data will be get as object form
     //Uploading doctor data to server/DB
     fetch("https://whispering-falls-11392.herokuapp.com/doctor", {
         method: "POST",
@@ -76,7 +76,7 @@ const AddDoctor = () => {
               toast.success('Successfully Added')  
             } 
             else{
-                console.log(data)
+                //console.log(data)
                 toast.error('Doctor Already Added')
             }
             document.getElementById('myform').reset();   //reset form input fields   
