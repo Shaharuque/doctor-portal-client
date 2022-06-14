@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../../CustomHook/useToken';
 import auth from '../../../firebase.init';
 import Loading from '../../Loading/Loading';
-
+import {FcGoogle} from 'react-icons/fc'
 
 
 const SocialLogin = () => {
@@ -36,16 +36,12 @@ const SocialLogin = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ border: '1px solid lightblue', width: '400px', height: '1px' }}></div>
-                <p style={{ margin: '0 10px', fontFamily: 'sans-serif',fontSize:'14px'}}>OR</p>
-                <div style={{ border: '1px solid lightblue', width: '400px', height: '1px' }}></div>
-            </div>
+            <div class="divider">OR</div>
             {errorElement}
             
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' ,marginTop:'55px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' ,marginTop:'20px' }}>
                 <button style={{ borderRadius: '5px', border: '3px solid gray', padding: '5px', marginBottom: '10px', width: '250px',display:'flex' ,justifyContent:'center',alignItems:'center' }} onClick={() => signInWithGoogle()}>
-                    <img style={{ width: '25%', }} src='https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1' alt="" />
+                   <FcGoogle className='text-2xl'/>
                     <span style={{ textAlign: 'center' }}>Sign in with Google</span>
                 </button>
             </div>    

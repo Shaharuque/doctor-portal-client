@@ -188,21 +188,21 @@ const Login = () => {
       {/* ---------------------------------------- */}
       <div className="grid grid-cols-1 justify-items-center">
         <p style={{ marginTop: "10px" }}>
-          New to Doctor's Portal?{" "}
+          New to Doctor's Chamber App?{" "}
           <span
             onClick={nevigateToRegister}
-            style={{ color: "red", cursor: "pointer" }}
+            style={{ color: "lightgreen", cursor: "pointer",fontWeight:'bold' }}
           >
-            register now
+            REGISTER NOW
           </span>
         </p>
         <p style={{ marginTop: "10px" }}>
           Forget password?{" "}
           <span
             onClick={resetPassword}
-            style={{ color: "teal", cursor: "pointer" }}
+            style={{ color: "teal", cursor: "pointer" ,fontWeight: "bold"}}
           >
-            Reset password
+            RESET PASSWORD
           </span>
         </p>
 
