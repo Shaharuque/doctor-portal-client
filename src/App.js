@@ -20,6 +20,7 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import AddDoctor from './Pages/Dashboard/AddDoctor';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
+import Contact from './Pages/Contact/Contact';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path='/contact' element={<Contact></Contact>}></Route>
         
         <Route path="appointment" element={
           <RequireAuth>

@@ -12,7 +12,7 @@ const AppointmentBanner = ({date, setDate}) => {
             backgroundSize: 'cover'
         }} class="hero min-h-screen">
             <div class="hero-content flex-col lg:flex-row-reverse">
-                <img src={chair} class="max-w-sm rounded-lg shadow-2xl" alt='Dentist Chair' />
+                <img src='https://images.adsttc.com/media/images/512e/1260/b3fc/4b00/6d00/01a1/large_jpg/JM_ClinicaDentaria_PauloMerlini_047.jpg?1361973845' class="lg:max-w-sm rounded-lg shadow-2xl" alt='Dentist Chair' />
                 <div>
                     <DayPicker
                         mode="single"

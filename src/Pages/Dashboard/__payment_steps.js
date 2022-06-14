@@ -1,3 +1,5 @@
+//payment->checkout [structure]
+
 /**
  * 1. install stripe react stripe js
  * 2. open stripe account on stripe website 

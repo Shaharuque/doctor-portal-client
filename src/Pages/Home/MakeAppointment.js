@@ -2,8 +2,10 @@ import React from 'react';
 import doctor from '../../assets/images/doctor.png';
 import appointment from '../../assets/images/appointment.png';
 import PrimaryButton from '../Shared/PrimaryButton';
+import { Link } from 'react-router-dom';
 
 const MakeAppointment = () => {
+
     return (
         <section style={{
             background: `url(${appointment})`,
@@ -16,7 +18,7 @@ const MakeAppointment = () => {
             <div className='flex-1 p-2 lg:text-center'>
                 <h2 className='text-3xl text-white mt-2 font-bold'>Make an Appointment Today</h2>
                 <p className='text-yellow-400 font-serif mt-2'>We provide world class treatment to your teeth. Remember "WE ARE CREATED TO CREATE BEAUTIFUL SMILES". So hurry up and book your appointment with us today.</p>
-                <PrimaryButton>Book Now!</PrimaryButton>
+                <Link to='/appointment'><PrimaryButton>Book Now!</PrimaryButton></Link>
             </div>
         </section>
     );
